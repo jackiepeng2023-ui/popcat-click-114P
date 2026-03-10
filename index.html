@@ -3,19 +3,109 @@
 <html lang="en">
     <head>
         <title>POPCAT CLASSIC</title>
+        <style>
+            html, body { height: 100%; margin: 0; padding: 0; }
+            body { font-family: sans-serif; }
+
+            .header-container {
+                height: 100vh;
+                display: flex;
+                flex-direction: column;
+                align-items: center; /* 水平置中 */
+                justify-content: flex-start; /* 不垂直置中 */
+                padding-top: 20px;
+                background-color: #bdaa90;
+            }
+
+            /* 標題圖片 box */
+            .header-container .title {
+                width: 80%;
+                max-width: 600px; /* 標題最大寬度 600px */
+                margin-top: 2em;
+                display: block;
+                height: auto;
+                user-select: none;
+                -webkit-user-select: none;
+                -ms-user-select: none;
+            }
+
+            /* 文字 box / 點擊數 */
+            .cat-img {
+                width: 100%;
+                max-width: 800px; /* 文字 box 最大寬度 800px */
+                box-sizing: border-box;
+                text-align: center;
+                color: #ffffff;
+                font-size: 80px;
+                font-family: sans-serif;
+                -webkit-text-stroke: 3px #000000;
+                line-height: 1;
+                padding: 1rem 0 4rem 0; /* 下方預留給背景圖片顯示 */
+                background-color: transparent;
+                margin: 0 auto; /* 置中 max-width */
+                user-select: none;
+                -webkit-user-select: none;
+                -ms-user-select: none;
+                flex: 1 1 auto; /* 填滿剩餘空間 */
+                display: flex;
+                align-items: flex-start; /* 文字置於區塊頂端（非垂直置中） */
+                justify-content: center; /* 文字水平置中 */
+                cursor: pointer;
+            }
+
+            /* 使用 id 設定背景圖（imgs/p.png），靠下、contain、不重複 */
+            #p {
+                background-image: url("./imgs/p.png");
+                background-position: bottom center;
+                background-size: contain;
+                background-repeat: no-repeat;
+            }
+
+            /* 當有 .open 時顯示張開的嘴 (imgs/op.png) */
+            #p.open {
+                background-image: url("./imgs/op.png");
+                background-position: bottom center;
+                background-size: contain;
+                background-repeat: no-repeat;
+            }
+
+            /* 新增 id #op 的背景圖片設定（暫不顯示元素） */
+            #op {
+                background-image: url("./imgs/op.png");
+                background-position: bottom center;
+                background-size: contain;
+                background-repeat: no-repeat;
+            }
+        </style>
     </head>
 
     <body>
-        <img class="title" src="./imgs/popcat.svg" alt="POPCAT">
-        <div class="cat-img" id="p">0</div>
+        <div class="header-container">
+            <img class="title" src="./imgs/popcat.svg" alt="POPCAT">
+            <div class="cat-img" id="p">0</div>
+        </div>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                var p = document.getElementById('p');
+                if (!p) return;
+                p.addEventListener('click', function (e) {
+                    // 計數
+                    var n = parseInt(p.textContent, 10);
+                    if (isNaN(n)) n = 0;
+                    n += 1;
+                    p.textContent = n;
+
+                    // 顯示張開嘴的背景，短暫還原
+                    p.classList.add('open');
+                    setTimeout(function () {
+                        p.classList.remove('open');
+                    }, 150);
+                });
+            });
+        </script>
 		</body>
+        
 </html>
 
-
-
-
-
-
-
-
-git config --global user.email "d1499051@o365.fcu.edu.tw"; git config --global user.name "YuHsiangPeng"
+git config --global user.email "jackiepeng2023@gmail.com"; git config --global user.name "YuHsiangPeng"
