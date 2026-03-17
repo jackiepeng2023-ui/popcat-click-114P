@@ -85,11 +85,17 @@
             <div class="cat-img" id="p">0</div>
         </div>
 
+        <audio id="popSound" src="pops/pop1.mp3"></audio>
+
         <script>
             document.addEventListener('DOMContentLoaded', function () {
                 var p = document.getElementById('p');
+                var audio = document.getElementById('popSound');
                 if (!p) return;
-                p.addEventListener('click', function (e) {
+                p.addEventListener('mousedown', function (e) {
+                    // 播放音頻
+                    audio.play();
+
                     // 計數
                     var n = parseInt(p.textContent, 10);
                     if (isNaN(n)) n = 0;
